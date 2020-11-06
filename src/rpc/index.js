@@ -4,10 +4,11 @@ import axios from 'axios';
 const RPC = () => {
 
     const requestUrl = 'https://raw.githubusercontent.com/alex/nyt-2020-election-scraper/master/results.json';
+    const loadingMessage = 'Loading...';
 
     const [rawData, setRawData] = useState(null);
-    const [outlookDem, setOutlookDem] = useState('');
-    const [outlookRep, setOutlookRep] = useState('');
+    const [outlookDem, setOutlookDem] = useState(null);
+    const [outlookRep, setOutlookRep] = useState(null);
     const [states, setStates] = useState(null);
 
     useEffect(() => {
@@ -125,10 +126,10 @@ const RPC = () => {
                             {'Biden:'}
                         </p>
                         <p>
-                            {`${outlookDem[0]}%`}
+                            {outlookDem ? `${outlookDem[0]}%` : loadingMessage}
                         </p>
                         <p>
-                            {`${outlookDem[1]} Votes`}
+                            {outlookDem ? `${outlookDem[1]} Votes` : loadingMessage}
                         </p>
                     </div>
                     <div className={'flex flex-col'}>
@@ -136,10 +137,10 @@ const RPC = () => {
                             {'Trump:'}
                         </p>
                         <p>
-                            {`${outlookRep[0]}%`}
+                            {outlookRep ? `${outlookRep[0]}%` : loadingMessage}
                         </p>
                         <p>
-                            {`${outlookRep[1]} Votes`}
+                            {outlookRep ? `${outlookRep[1]} Votes` : loadingMessage}
                         </p>
                     </div>
                 </div>
